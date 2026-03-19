@@ -73,7 +73,6 @@ def mostrar_arvore(diretorio, prefixo="", raiz=None):
 
     itens_visiveis = []
     for item in itens:
-        # 🔥 ignora o próprio script
         if item == SELF_FILE:
             continue
 
@@ -103,10 +102,16 @@ def mostrar_arvore(diretorio, prefixo="", raiz=None):
 
 
 if __name__ == "__main__":
-    pasta_atual = os.getcwd()
-    nome_projeto = os.path.basename(pasta_atual)
+    caminho = input("Digite o caminho da pasta (ENTER = pasta atual): ").strip()
 
-    # 🔥 mostra nome da pasta raiz
-    print(nome_projeto)
+    if caminho == "":
+        caminho = os.getcwd()
 
-    mostrar_arvore(pasta_atual)
+    if not os.path.exists(caminho):
+        print("❌ Caminho inválido!")
+        exit()
+
+    nome_projeto = os.path.basename(os.path.abspath(caminho))
+
+    print("\n📁", nome_projeto)
+    mostrar_arvore(caminho)
