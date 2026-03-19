@@ -25,7 +25,9 @@ IGNORE_RULES = [
     "*.ntvs*",
     "*.njsproj",
     "*.sln",
-    "*.sw?"
+    "*.sw?",
+    "*.next",
+    "*.git"
 ]
 
 
@@ -102,10 +104,7 @@ def mostrar_arvore(diretorio, prefixo="", raiz=None):
 
 
 if __name__ == "__main__":
-    caminho = input("Digite o caminho da pasta (ENTER = pasta atual): ").strip()
-
-    if caminho == "":
-        caminho = os.getcwd()
+    caminho = input("Cole o caminho da pasta: ").strip().strip('"')
 
     if not os.path.exists(caminho):
         print("❌ Caminho inválido!")
@@ -113,5 +112,5 @@ if __name__ == "__main__":
 
     nome_projeto = os.path.basename(os.path.abspath(caminho))
 
-    print("\n📁", nome_projeto)
+    print(nome_projeto)
     mostrar_arvore(caminho)
